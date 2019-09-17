@@ -1,0 +1,57 @@
+---
+title: "620 Coin Example"
+author: "Rod Rahimi"
+date: "9/16/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+coin_counter <-c()
+for (i in 1:100000){
+coin <- c('h','t')
+toss_number <- 0
+toss_goal <- 2
+counter <- c()
+
+
+number_coins<- c()
+while(toss_number<toss_goal){
+   toss <- sample(coin,1,T)
+  counter <-c(counter,toss)
+  if (length(counter)==1){
+ next
+  }
+  else if(tail(counter,1)==counter[length(counter)-1]){
+    toss_number<-toss_goal
+    number_coins <- length(counter)
+    break
+  }
+  else{ 
+    next }
+ 
+}
+coin_counter <-c(coin_counter,number_coins)
+
+i+1
+}
+
+
+```
+
+
+```{r}
+coin_counter2 <- table(as.factor(coin_counter))
+coin_counter2
+barplot(coin_counter2,ylim=c(0,75000))
+
+table(coin_counter)/length(coin_counter)
+barplot((coin_counter2)/sum(coin_counter2),ylim = c(0,.6))
+
+
+
+```
+
